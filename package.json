@@ -1,7 +1,7 @@
 {
   "name": "expresso",
   "version": "0.0.1",
-  "description": "expresso - need fast coffee? get it here",
+  "description": "expresso - need fast coffee? find it here",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf node_modules/ && rm -rf dist/ && rm -rf client/bower_components",
