@@ -1,0 +1,18 @@
+{
+  "curly": true,
+  "eqnull": true,
+  "eqeqeq": true,
+  "undef": true,
+  "globalstrict": true,
+  "quotmark": "single",
+  "globals": {
+    "jQuery": true,
+    "angular": true,
+    "window": true,
+    "module": true,
+    "console": true,
+    "require": true,
+    "__dirname": true,
+    "_": true
+  }
+}

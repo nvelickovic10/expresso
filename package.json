@@ -1,0 +1,47 @@
+{
+  "name": "expresso",
+  "version": "0.0.1",
+  "description": "expresso - need fast coffee? get it here",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf node_modules/ && rm -rf dist/ && rm -rf client/bower_components",
+    "init": "npm i && bower i",
+    "start": "grunt serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git.com"
+  },
+  "keywords": [
+    "expresso",
+    "espresso",
+    "coffee",
+    "javascript",
+    "npm"
+  ],
+  "author": "nvelickovic10 <nvelickovic10@gmail.com>",
+  "devDependencies": {
+    "bower": "1.8.0",
+    "grunt": "1.0.1",
+    "grunt-angular-builder": "1.0.0-beta3",
+    "grunt-angular-templates": "1.1.0",
+    "grunt-bower-concat": "1.0.0",
+    "grunt-cli": "1.2.0",
+    "grunt-contrib-clean": "1.1.0",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-jshint": "1.1.0",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-express-server": "0.5.3",
+    "grunt-include-source": "1.1.0",
+    "grunt-sass": "2.0.0",
+    "grunt-sass-import": "0.2.2",
+    "grunt-svgstore": "1.0.0",
+    "grunt-wiredep": "3.0.1",
+    "load-grunt-tasks": "3.5.2",
+    "path": "0.12.7"
+  },
+  "dependencies": {
+    "body-parser": "1.17.1",
+    "express": "4.15.2"
+  }
+}

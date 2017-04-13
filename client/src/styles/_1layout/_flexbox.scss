@@ -1,0 +1,14 @@
+%container-flex,
+.container-flex {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+
+%explode {
+    width: 100%;
+    height: 100%;
+}
