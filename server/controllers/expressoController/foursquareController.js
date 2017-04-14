@@ -82,11 +82,11 @@ var parseCoffeeShop = function (rawVenue, groupName) {
     return {
       id: category.id,
       name: category.name
-    }
+    };
   });
 
   if (rawVenue.featuredPhotos && rawVenue.featuredPhotos.count > 0) {
-    parsedCoffeeShop.photo = rawVenue.featuredPhotos.items[0].prefix + 'original' + rawVenue.featuredPhotos.items[0].suffix
+    parsedCoffeeShop.photo = rawVenue.featuredPhotos.items[0].prefix + 'original' + rawVenue.featuredPhotos.items[0].suffix;
   }
 
   parsedCoffeeShop.groupName = groupName;
@@ -109,7 +109,7 @@ var parseGroups = function (rawGroups) {
     });
   });
   return parsedCoffeeShops;
-}
+};
 
 foursquareController.get('/exploreCoffeeShops', function (req, res) {
   var url = 'venues/explore';
@@ -129,13 +129,13 @@ foursquareController.get('/exploreCoffeeShops', function (req, res) {
   };
 
   fetchFoursquareDataAsJSON(url, foursquareSearchParameters, function (jsonData) {
-    var returnData = undefined;
+    var returnData;
     if (parameters.raw) {
       returnData = jsonData;
     } else {
       returnData = parseGroups(jsonData.response.groups);
     }
-    // console.log(JSON.stringify(returnData, null, 2), parsedCoffeeShops.length);
+    // console.log(JSON.stringify(returnData, null, 2), returnData.length);
 
     if (parameters.pretty) {
       res.send('<pre>' + JSON.stringify(returnData, null, 2) + '</pre>');

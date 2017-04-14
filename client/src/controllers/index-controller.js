@@ -1,19 +1,25 @@
 'use strict';
 
-angular.module('angApp').controller('indexController', function ($scope, ExpressoService) {
-    $scope.hello = 'Hello!' + ExpressoService.getData().number;
+angular.module('angApp').controller('indexController', function ($scope, ExpressoService, GeolocationService) {
+    $scope.hello = 'Hello!';
 
-    var getGeolocation = function () {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                console.log(position);
-            });
-        } else {
-            console.log('No geolocation!');
-        }
+    var getGeolocationData = function () {
+        GeolocationService.getLocationData().then(function (data) {
+            console.log('indexController getGeolocationData', data);
+            getCoffeeShopsData();
+        }, function (reason) {
+            console.error(reason);
+        });
     };
 
-    if (navigator) {
-        getGeolocation();
-    }
+    var getCoffeeShopsData = function () {
+        ExpressoService.getCoffeeShopsData().then(function (data) {
+            console.log('indexController getCoffeeShopsData', data);
+            $scope.hello = data.response;
+        }, function (reason) {
+            console.error(reason);
+        });
+    };
+
+    getGeolocationData();
 });
