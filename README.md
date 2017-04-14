@@ -3,4 +3,4 @@
 # How to start:
 #  clone project
 #  run npm run init
-#  run npm run serve
+#  run npm run start
