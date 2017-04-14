@@ -35,7 +35,7 @@ angular.module('angApp').service('ExpressoService', function ($http, $q, Geoloca
         var deffered = $q.defer();
         GeolocationService.getLocationData().then(function (data) {
             var ll = data.response.coords.latitude + ',' + data.response.coords.longitude;
-            _httpRequest('http://127.0.0.:5000/expresso/foursquare/exploreCoffeeShops?ll=' + ll + '&accuracy=' + data.response.coords.accuracy + '&radius=1000&limit=10&offset=0&sortByPrice=' + sortByPrice).then(function (response) {
+            _httpRequest('http://127.0.0.1:5000/expresso/foursquare/exploreCoffeeShops?ll=' + ll + '&accuracy=' + data.response.coords.accuracy + '&radius=1000&limit=10&offset=0&sortByPrice=' + sortByPrice).then(function (response) {
                 deffered.resolve(response);
             }, function (reason) {
                 deffered.reject(reason);

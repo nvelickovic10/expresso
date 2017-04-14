@@ -1,15 +1,18 @@
 <div id="indexView">
     <div id="notepad"></div>
     <div class="blank-canvas" ng-class="{'blank-canvas--colapsed' : blankCanvasColapsed}">
-        <div class="control">
-            Sort by distance
-            <label class="switch" ng-click="sort()">
+        <div ng-if="!error">
+            <div class="control">
+                Sort by distance
+                <label class="switch" ng-click="sort()">
                 <input type="checkbox" ng-model="sortByPrice">
                 <div class="slider round"></div>
             </label> Sort by price
+            </div>
+            <div class="coffee-shop-list">
+                <coffee-shop-item ng-repeat="coffeeShop in coffeeShopsList" coffee-shop-data="coffeeShop"></coffee-shop-item>
+            </div>
         </div>
-        <div class="coffee-shop-list">
-            <coffee-shop-item ng-repeat="coffeeShop in coffeeShopsList" coffee-shop-data="coffeeShop"></coffee-shop-item>
-        </div>
+        <error ng-if="error" msg="error"></error>
     </div>
 </div>

@@ -20,6 +20,7 @@
         background-color: $blank-canvas-background-color;
         width: 908px;
         max-height: 6000px;
+        min-height: 530px;
         height: 100%;
         margin: 0 auto;
         transition: max-height 1s ease-in;
@@ -42,6 +43,7 @@
     }
     .blank-canvas--colapsed {
         max-height: 0px;
+        min-height: 0px;
         transition: max-height 1s ease-in;
         overflow: hidden;
     }
@@ -92,5 +94,13 @@
     }
     .slider.round:before {
         border-radius: 50%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #indexView {
+        .blank-canvas {
+            width: 454px;
+        }
     }
 }

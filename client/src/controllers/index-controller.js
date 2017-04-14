@@ -4,6 +4,7 @@ angular.module('angApp').controller('indexController', function ($scope, Express
 
     $scope.blankCanvasColapsed = true;
     $scope.sortByPrice = false;
+    $scope.error = null;
 
     $scope.sort = function () {
         $scope.sortByPrice = !$scope.sortByPrice;
@@ -13,6 +14,8 @@ angular.module('angApp').controller('indexController', function ($scope, Express
     var _getCoffeeShopsData = function (cb) {
         ExpressoService.getCoffeeShopsData($scope.sortByPrice).then(cb, function (reason) {
             console.error(reason);
+            $scope.error = JSON.stringify(reason, null, 2);
+            $scope.blankCanvasColapsed = false;
         });
     };
 
