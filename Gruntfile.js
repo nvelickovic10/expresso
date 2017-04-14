@@ -120,7 +120,7 @@ module.exports = function (grunt) {
                 tasks: ['client']
             },
             server: {
-                files: ['server/*'],
+                files: ['server/**/*'],
                 tasks: ['express:dev'],
                 options: {
                     nospawn: true
