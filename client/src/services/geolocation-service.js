@@ -17,7 +17,7 @@ angular.module('angApp').service('GeolocationService', function ($q) {
                 deffered.reject({
                     status: 400,
                     msg: 'failed getting location data',
-                    reason: 'user denied action'
+                    reason: err.message ? err.message : 'user denied action'
                 });
             });
         } else {
