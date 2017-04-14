@@ -79,7 +79,7 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc'
             },
-            all: ['Gruntfile.js', 'client/src/**/*.js']
+            all: ['Gruntfile.js', 'client/src/**/*.js', 'server/**/*']
         },
 
         sass: {
@@ -120,7 +120,7 @@ module.exports = function (grunt) {
                 tasks: ['client']
             },
             server: {
-                files: ['server/*'],
+                files: ['server/**/*'],
                 tasks: ['express:dev'],
                 options: {
                     nospawn: true
@@ -146,7 +146,7 @@ module.exports = function (grunt) {
 
     // Default task.
     grunt.registerTask('default', [], function () {
-        grunt.task.run('clean', 'client');
+        grunt.task.run('clean', 'jshint', 'client');
         grunt.task.run('express:dev');
     });
 

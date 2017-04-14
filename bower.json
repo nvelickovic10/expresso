@@ -1,19 +1,6 @@
 {
   "name": "expresso",
-  "authors": [
-    "nvelickovic10 <nvelickovic10@gmail.com>"
-  ],
   "directory": "client/",
-  "description": "expresso - need fast coffee? get it here bower.json",
-  "main": "",
-  "moduleType": [],
-  "keywords": [
-    "expresso",
-    "espresso",
-    "coffee",
-    "bower"
-  ],
-  "homepage": "www..",
   "ignore": [
     "**/.*",
     "node_modules",
