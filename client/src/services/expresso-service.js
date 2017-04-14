@@ -8,7 +8,7 @@ angular.module('angApp').service('ExpressoService', function ($http, $q, Geoloca
         if (!url) {
             deffered.reject({
                 status: 400,
-                response: 'url parameter is mandatory'
+                msg: 'url parameter is mandatory'
             });
         }
 
@@ -17,6 +17,7 @@ angular.module('angApp').service('ExpressoService', function ($http, $q, Geoloca
             headers: {
                 'Content-Type': 'application/json'
             },
+            timeout: 5000,
             url: url
         }).then(function successCallback(response) {
             deffered.resolve({
@@ -24,7 +25,7 @@ angular.module('angApp').service('ExpressoService', function ($http, $q, Geoloca
                 response: response.data
             });
         }, function errorCallback(response) {
-            deffered.reject(response);
+            deffered.reject({ status: 500, msg: 'failed connection to server', reason: response });
         });
 
         return deffered.promise;
@@ -36,9 +37,11 @@ angular.module('angApp').service('ExpressoService', function ($http, $q, Geoloca
             var ll = data.response.coords.latitude + ',' + data.response.coords.longitude;
             _httpRequest('http://127.0.0.1:5000/expresso/foursquare/exploreCoffeeShops?ll=' + ll + '&accuracy=' + data.response.coords.accuracy + '&radius=1000&limit=10&offset=0&sortByPrice=' + sortByPrice).then(function (response) {
                 deffered.resolve(response);
+            }, function (reason) {
+                deffered.reject(reason);
             });
         }, function (reason) {
-            console.error(reason);
+            deffered.reject(reason);
         });
 
         // deffered.resolve({ status: 200, response: mockData });
