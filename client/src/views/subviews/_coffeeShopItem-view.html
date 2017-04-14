@@ -1,0 +1,8 @@
+<a class="coffee-shop-item" ng-class="{'coffee-shop-item--low' : coffeeShopData.price.tier === 1, 'coffee-shop-item--medium' : coffeeShopData.price.tier === 2, 'coffee-shop-item--high' : coffeeShopData.price.tier === 3, 'coffee-shop-item--extreme' : coffeeShopData.price.tier === 4}"
+  ng-href="http://foursquare.com/v/{{coffeeShopData.id}}">
+  <div class="header">
+    <div class="name">{{coffeeShopData.name}}</div>
+    <div class="distance">{{coffeeShopData.distance}} meters</div>
+  </div>
+  <img src="{{coffeeShopData.photo}}" alt="Smiley face">
+</a>

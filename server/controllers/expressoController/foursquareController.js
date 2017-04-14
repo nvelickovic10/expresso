@@ -68,11 +68,13 @@ var parseGetParameters = function (rawParameters) {
  * @returns {Object}
  */
 var parseCoffeeShop = function (rawVenue, groupName) {
+  // console.log(rawVenue);
+
   var parsedCoffeeShop = {};
 
   parsedCoffeeShop.id = rawVenue.id;
   parsedCoffeeShop.name = rawVenue.name;
-  parsedCoffeeShop.distance = rawVenue.distance;
+  parsedCoffeeShop.distance = rawVenue.location.distance;
 
   if (rawVenue.price) {
     parsedCoffeeShop.price = rawVenue.price;
@@ -115,6 +117,8 @@ foursquareController.get('/exploreCoffeeShops', function (req, res) {
   var url = 'venues/explore';
   var parameters = parseGetParameters(req.query);
 
+  // console.log(parameters.sortByPrice)
+
   var foursquareSearchParameters = {
     ll: parameters.ll,
     llAcc: parameters.accuracy,
@@ -134,6 +138,12 @@ foursquareController.get('/exploreCoffeeShops', function (req, res) {
       returnData = jsonData;
     } else {
       returnData = parseGroups(jsonData.response.groups);
+    }
+
+    if (parameters.sortByPrice) {
+      returnData = _.sortBy(returnData, function (datum) {
+        return -datum.price.tier;
+      });
     }
     // console.log(JSON.stringify(returnData, null, 2), returnData.length);
 
