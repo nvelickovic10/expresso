@@ -7,8 +7,8 @@ angular.module('angApp').controller('indexController', function ($scope, Express
     $scope.error = null;
     $scope.loading = true;
 
-    $scope.sort = function () {
-        $scope.sortByPrice = !$scope.sortByPrice;
+    $scope.sort = function (value) {
+        $scope.sortByPrice = value;
         _getData();
     };
 

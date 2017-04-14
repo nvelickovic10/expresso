@@ -4,8 +4,8 @@
         <div ng-if="!error">
             <div class="control">
                 Sort by distance
-                <label class="switch" ng-click="sort()">
-                <input type="checkbox" ng-model="sortByPrice">
+                <label class="switch">
+                <input type="checkbox" ng-model="sortByPrice" ng-click="sort(sortByPrice)">
                 <div class="slider round"></div>
             </label> Sort by price
             </div>
