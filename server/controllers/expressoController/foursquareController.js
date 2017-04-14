@@ -63,11 +63,18 @@ var parseGetParameters = function (rawParameters) {
 };
 
 // /expresso/foursquare/nearCoffeeShops?ll=44.83,20.54&pretty=true
+// coffee shop category 4bf58dd8d48988d1e0931735
 foursquareController.get('/nearCoffeeShops', function (req, res) {
   var parameters = parseGetParameters(req.query);
-  console.log(parameters)
+  console.log(parameters);
   var url = 'venues/search';
-  fetchFoursquareDataAsJSON(url, { ll: parameters.ll }, function (jsonData) {
+  var foursquareSearchParameters = {
+    ll: parameters.ll,
+    query: parameters.query,
+    radius: parameters.radius,
+    categoryId: '4bf58dd8d48988d1e0931735'
+  };
+  fetchFoursquareDataAsJSON(url, foursquareSearchParameters, function (jsonData) {
     if (parameters.pretty) {
       res.send('<pre>' + JSON.stringify(jsonData, null, 2) + '</pre>');
     } else {

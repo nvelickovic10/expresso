@@ -9,9 +9,9 @@ angular.module('angApp').controller('indexController', function ($scope, Express
                 console.log(position);
             });
         } else {
-            alert('No geolocation!');
+            console.log('No geolocation!');
         }
-    }
+    };
 
     if (navigator) {
         getGeolocation();
