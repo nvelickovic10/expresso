@@ -6,8 +6,8 @@
   "globalstrict": true,
   "quotmark": "single",
   "globals": {
-    "jQuery": true,
     "angular": true,
+    "navigator": true,
     "window": true,
     "module": true,
     "console": true,
