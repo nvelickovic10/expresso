@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('angApp').controller('indexController', function ($scope, ExpressoService, GeolocationService) {
-    $scope.hello = 'Hello!';
 
     $scope.blankCanvasColapsed = true;
     $scope.sortByPrice = false;
@@ -21,21 +20,12 @@ angular.module('angApp').controller('indexController', function ($scope, Express
         });
     };
 
-    // var _getGeolocationData = function (cb) {
-    //     GeolocationService.getLocationData().then(cb, function (reason) {
-    //         console.error(reason);
-    //     });
-    // };
-
     var _getData = function () {
-        // _getGeolocationData(function (data) {
-        //     console.log('indexController init geolocationData', data);
         _getCoffeeShopsData(function (data) {
-            console.log('indexController init coffeeShopsData', data);
+            // console.log('indexController init coffeeShopsData', data);
             $scope.coffeeShopsList = data.response;
             $scope.blankCanvasColapsed = false;
         });
-        // });
     };
 
     _getData();

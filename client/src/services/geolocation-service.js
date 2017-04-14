@@ -8,7 +8,7 @@ angular.module('angApp').service('GeolocationService', function ($q) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 locationData = position;
-                console.log(position)
+                // console.log(position)
                 deffered.resolve({
                     status: 200,
                     response: position
