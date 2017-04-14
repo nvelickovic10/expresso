@@ -129,13 +129,18 @@ foursquareController.get('/exploreCoffeeShops', function (req, res) {
   };
 
   fetchFoursquareDataAsJSON(url, foursquareSearchParameters, function (jsonData) {
-    var parsedCoffeeShops = parseGroups(jsonData.response.groups);
-    // console.log(JSON.stringify(parsedCoffeeShops, null, 2), parsedCoffeeShops.length);
+    var returnData = undefined;
+    if (parameters.raw) {
+      returnData = jsonData;
+    } else {
+      returnData = parseGroups(jsonData.response.groups);
+    }
+    // console.log(JSON.stringify(returnData, null, 2), parsedCoffeeShops.length);
 
     if (parameters.pretty) {
-      res.send('<pre>' + JSON.stringify(jsonData, null, 2) + '</pre>');
+      res.send('<pre>' + JSON.stringify(returnData, null, 2) + '</pre>');
     } else {
-      res.json(jsonData);
+      res.json(returnData);
     }
   });
 });
