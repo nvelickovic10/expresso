@@ -68,11 +68,13 @@ var parseGetParameters = function (rawParameters) {
  * @returns {Object}
  */
 var parseCoffeeShop = function (rawVenue, groupName) {
+  // console.log(rawVenue);
+
   var parsedCoffeeShop = {};
 
   parsedCoffeeShop.id = rawVenue.id;
   parsedCoffeeShop.name = rawVenue.name;
-  parsedCoffeeShop.distance = rawVenue.distance;
+  parsedCoffeeShop.distance = rawVenue.location.distance;
 
   if (rawVenue.price) {
     parsedCoffeeShop.price = rawVenue.price;
@@ -82,11 +84,11 @@ var parseCoffeeShop = function (rawVenue, groupName) {
     return {
       id: category.id,
       name: category.name
-    }
+    };
   });
 
   if (rawVenue.featuredPhotos && rawVenue.featuredPhotos.count > 0) {
-    parsedCoffeeShop.photo = rawVenue.featuredPhotos.items[0].prefix + 'original' + rawVenue.featuredPhotos.items[0].suffix
+    parsedCoffeeShop.photo = rawVenue.featuredPhotos.items[0].prefix + 'original' + rawVenue.featuredPhotos.items[0].suffix;
   }
 
   parsedCoffeeShop.groupName = groupName;
@@ -109,11 +111,13 @@ var parseGroups = function (rawGroups) {
     });
   });
   return parsedCoffeeShops;
-}
+};
 
 foursquareController.get('/exploreCoffeeShops', function (req, res) {
   var url = 'venues/explore';
   var parameters = parseGetParameters(req.query);
+
+  // console.log(parameters.sortByPrice)
 
   var foursquareSearchParameters = {
     ll: parameters.ll,
@@ -129,13 +133,19 @@ foursquareController.get('/exploreCoffeeShops', function (req, res) {
   };
 
   fetchFoursquareDataAsJSON(url, foursquareSearchParameters, function (jsonData) {
-    var returnData = undefined;
+    var returnData;
     if (parameters.raw) {
       returnData = jsonData;
     } else {
       returnData = parseGroups(jsonData.response.groups);
     }
-    // console.log(JSON.stringify(returnData, null, 2), parsedCoffeeShops.length);
+
+    if (parameters.sortByPrice) {
+      returnData = _.sortBy(returnData, function (datum) {
+        return -datum.price.tier;
+      });
+    }
+    // console.log(JSON.stringify(returnData, null, 2), returnData.length);
 
     if (parameters.pretty) {
       res.send('<pre>' + JSON.stringify(returnData, null, 2) + '</pre>');

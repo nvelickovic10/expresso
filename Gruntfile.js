@@ -38,9 +38,9 @@ module.exports = function (grunt) {
         copy: {
             dev: {
                 files: [{
-                    cwd: 'client/assets/js/',
-                    src: 'simplepeer.min.js',
-                    dest: 'dist/public/',
+                    cwd: 'client/assets/images/',
+                    src: '*',
+                    dest: 'dist/public/assets/images',
                     expand: true
                 }]
             }

@@ -1,5 +1,14 @@
 body {
+    width: 100vw;
+    height: 100vh;
     background-color: $background-color;
+    overflow: scroll;
+}
+
+#appContainer {
+    width: 1000px;
+    min-height: 700px;
+    margin: 0 auto;
 }
 
 #error_message {
@@ -16,5 +25,5 @@ body {
 }
 
 #footer {
-    top: 1500px;
+    margin-top: 50px;
 }
