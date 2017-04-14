@@ -17,7 +17,7 @@ angular.module('angApp').service('ExpressoService', function ($http, $q, Geoloca
             headers: {
                 'Content-Type': 'application/json'
             },
-            timeout: 5000,
+            timeout: 20000,
             url: url
         }).then(function successCallback(response) {
             deffered.resolve({
