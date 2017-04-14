@@ -13,13 +13,19 @@ angular.module('angApp').service('GeolocationService', function ($q) {
                     status: 200,
                     response: position
                 });
+            }, function (err) {
+                deffered.reject({
+                    status: 400,
+                    msg: 'failed getting location data',
+                    reason: err
+                });
             });
         } else {
             deffered.reject({
                 status: 400,
-                response: 'No geolocation support'
+                msg: 'No geolocation support',
+                reason: null
             });
-            console.log('No geolocation!');
         }
         return deffered.promise;
     };
@@ -29,6 +35,8 @@ angular.module('angApp').service('GeolocationService', function ($q) {
         if (locationData === null) {
             _getLocationData().then(function (response) {
                 deffered.resolve(response);
+            }, function (error) {
+                deffered.reject(error);
             });
         } else {
             deffered.resolve({

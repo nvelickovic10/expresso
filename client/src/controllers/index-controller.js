@@ -5,10 +5,6 @@ angular.module('angApp').controller('indexController', function ($scope, Express
     $scope.blankCanvasColapsed = true;
     $scope.sortByPrice = false;
 
-    $scope.click = function () {
-        $scope.blankCanvasColapsed = !$scope.blankCanvasColapsed;
-    };
-
     $scope.sort = function () {
         $scope.sortByPrice = !$scope.sortByPrice;
         _getData();
